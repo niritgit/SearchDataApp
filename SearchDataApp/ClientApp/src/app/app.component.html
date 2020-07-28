@@ -1,0 +1,27 @@
+<body>
+  <app-nav-menu></app-nav-menu>
+  <div class="container">
+    <form (ngSubmit)="onSearch(searchTxt.value)" #f="ngForm">
+      <input
+         type="search"
+         ngModel
+         name="searchTxt"
+         #searchTxt="ngModel"  />
+      <button
+         type="submit"
+         [disabled]="!searchTxt.dirty">
+        Submit
+      </button>
+      <div
+         *ngIf="isLoading"
+         style="text-align:center">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </form>
+      
+      <div *ngFor="let res of results">
+        [{{res.engine}}] - {{res.title}}
+      </div>
+  </div>
+  
+</body>
